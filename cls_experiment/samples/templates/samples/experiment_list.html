@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Experiment List</title>
+</head>
+<body>
+    <h1>Experiments</h1>
+    <ul>
+        {% for experiment in experiments %}
+            <li>{{ experiment.project_code }} - {{ experiment.visit_date }}</li>
+            <ul>
+                {% for sample in experiment.samples.all() %}
+                    <li>{{ sample.name }}: {{ sample.quantity }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_experiment' %}">Add Experiment</a>
+</body>
+</html>
